@@ -1,8 +1,12 @@
 Description
 ===========
 
+Add ppa repository and install nginx.
+
 Requirements
 ============
+
+* opscode cookbook apt. [https://github.com/opscode-cookbooks/apt](https://github.com/opscode-cookbooks/apt)
 
 Attributes
 ==========
