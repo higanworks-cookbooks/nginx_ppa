@@ -3,7 +3,7 @@ service "nginx" do
 end
 
 
-template "#{node['nginx']['dir']}/sites-available/localhost.conf"
+template "#{node['nginx']['dir']}/sites-available/localhost.conf" do
   source "http-proxy.erb"
   owner "root"
   group "root"
@@ -13,7 +13,7 @@ template "#{node['nginx']['dir']}/sites-available/localhost.conf"
     :listen_port => 80,
     :backends => {
       "http://localhost:8080" => nil,
-      "http://localhost:8081" => "backup weight=5",
+      "http://localhost:8081" => "backup weight=5"
       }
   })
 end
