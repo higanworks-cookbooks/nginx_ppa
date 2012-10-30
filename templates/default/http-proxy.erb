@@ -1,0 +1,25 @@
+upstream <%= @upstream_name %> {
+<% @backends.each_key do |backend| %>
+  <%= backend %> <%= @backends[backend] %>;
+<% end %>
+}
+
+server {
+  listen <%= @listen_port %>;
+  server_name <%= @server_name %>;
+  access_log /var/log/nginx/<%= @upstream_name %>.access.log;
+  error_log /var/log/nginx/<%= @upstream_name %>.error.log warn;
+
+  root <%= @document_root %>;
+  
+  location @<%= @upstream_name %> {
+    proxy_set_header Host $http_host;
+
+    proxy_pass http://<%= @upstream_name %>;
+  }
+  
+  location / {
+    try_files $uri @<%= @upstream_name %>;
+  }
+}
+
