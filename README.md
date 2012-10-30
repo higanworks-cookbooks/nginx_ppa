@@ -24,6 +24,50 @@ nginx site enabler. Copy from opscode cookbook.
 nginx site disabler. Copy from opscode cookbook.
 
 
+Recipes
+=====
+
+### default.rb
+
+Install nginx from ppa and start as daemon.
+
+runlist = "recipe[nginx_ppa]"
+
+### proxy.rb
+
+Create simple proxy configurations by "proxies" node attributes.
+
+#### node attributes.
+
+<pre><code>  "nginx": {
+    "proxies": {
+      "example.com": {
+        "server_name": "example.com",
+        "document_root": "/usr/share/nginx/html",
+        "upstream_name": "up-localhost",
+        "listen_port": 80,
+        "backends": {
+          "localhost:8080": null,
+          "localhost:8081": "backup weight=8"
+        }
+      },
+      "www.example.com": {
+        "server_name": "www.example.com",
+        "document_root": "/usr/share/nginx/html",
+        "upstream_name": "up-example",
+        "listen_port": 80,
+        "backends": {
+          "localhost:8082": null,
+          "localhost:8083": "down"
+        }
+      }
+    }
+  }
+</code></pre>
+
+#### template
+`http-proxy.erb`
+
 Resource
 ====
 
