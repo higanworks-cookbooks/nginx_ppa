@@ -15,17 +15,11 @@ else
         SITENAME=$1
 fi
 
-if [ $SITENAME = "default" ]; then
-        PRIORITY="000"
-fi
-
-if ! [ -e $SYSCONFDIR/sites-enabled/$SITENAME -o \
-       -e $SYSCONFDIR/sites-enabled/"$PRIORITY"-"$SITENAME" ]; then
+if ! [ -e $SYSCONFDIR/sites-enabled/$SITENAME ]; then
         echo "This site is already disabled, or does not exist!"
         exit 1
 fi
 
-if ! rm $SYSCONFDIR/sites-enabled/$SITENAME 2>/dev/null; then
-        rm -f $SYSCONFDIR/sites-enabled/"$PRIORITY"-"$SITENAME"
-fi
+rm $SYSCONFDIR/sites-enabled/$SITENAME 2>/dev/null
+
 echo "Site $SITENAME disabled; reload nginx to disable."
