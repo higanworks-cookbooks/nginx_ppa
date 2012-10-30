@@ -13,7 +13,8 @@ template "#{node['nginx']['dir']}/sites-available/localhost.conf" do
     :listen_port => 80,
     :backends => {
       "http://localhost:8080" => nil,
-      "http://localhost:8081" => "backup weight=5"
+      "http://localhost:8081" => "backup weight=8"
       }
   })
+  notifies :reload, "service[nginx]"
 end
