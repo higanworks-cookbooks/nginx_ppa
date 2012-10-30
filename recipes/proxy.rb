@@ -21,5 +21,4 @@ node['nginx']['proxies'].each_key do |proxy|
   end
 
   nginx_ppa_site proxy
-
-end
+end if node['nginx']['proxies']

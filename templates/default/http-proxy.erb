@@ -1,6 +1,6 @@
 upstream <%= @upstream_name %> {
 <% @backends.each_key do |backend| %>
-  <%= backend %> <%= @backends[backend] %>;
+  server <%= backend %> <%= @backends[backend] %>;
 <% end %>
 }
 
