@@ -34,3 +34,17 @@ end
 package "nginx" do
   action :install
 end
+
+%w(nxensite nxdissite).each do |nxscript|
+  template "/usr/sbin/#{nxscript}" do
+    source "#{nxscript}.erb"
+    mode "0755"
+    owner "root"
+    group "root"
+  end
+end
+
+service "nginx" do
+  action [:enable, :start]
+  supports [:restart, :reload, :status]
+end

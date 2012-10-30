@@ -11,8 +11,23 @@ Requirements
 Attributes
 ==========
 
+- default['nginx']['dir'] = "/etc/nginx"  
+Nginx config directory. Used by nxscripts.
+
+
+Scripts
+=====
+
+- nxensite  
+nginx site enabler. Copy from opscode cookbook.
+- nxdissite
+nginx site disabler. Copy from opscode cookbook.
+
+
 Usage
 =====
+
+
 
 Test Scenario for cucumber-chef
 ====
