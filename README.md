@@ -20,13 +20,35 @@ Scripts
 
 - nxensite  
 nginx site enabler. Copy from opscode cookbook.
-- nxdissite
+- nxdissite  
 nginx site disabler. Copy from opscode cookbook.
 
 
-Usage
-=====
+Resource
+====
 
+### Site
+
+To enable site and reload nginx.
+
+#### Site - actions
+
+- enable(*default)
+- disable
+
+#### Site - attributes
+
+Nothing
+
+<pre><code>nginx_ppa_site "example.com" do
+  action :enable
+end</code></pre>
+
+To disable site and reload nginx.
+
+<pre><code>nginx_ppa_site "example.com" do
+  action :disable
+end</code></pre>
 
 
 Test Scenario for cucumber-chef
