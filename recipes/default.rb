@@ -34,3 +34,8 @@ end
 package "nginx" do
   action :install
 end
+
+service "nginx" do
+  action :nothing
+  supports [:restart, :reload, :status]
+end
