@@ -23,7 +23,7 @@ end
 execute "apt-get update" do
   command "apt-get update"
   ignore_failure true
-  if node['chef_packages']['chef']['version'] < 10
+  if node['chef_packages']['chef']['version'] < 10.0
     action :run
   else
     action :nothing
