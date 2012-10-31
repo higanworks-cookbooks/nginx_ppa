@@ -3,8 +3,7 @@ service "nginx" do
 end
 
 
-node['nginx']['proxies'].each_key do |proxy|
-  options = node['nginx']['proxies'][proxy]
+node['nginx']['proxies'].each_pair do |proxy, options|
 
   template "#{node['nginx']['dir']}/sites-available/#{proxy}" do
     source "http-proxy.erb"

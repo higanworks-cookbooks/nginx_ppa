@@ -23,7 +23,11 @@ end
 execute "apt-get update" do
   command "apt-get update"
   ignore_failure true
-  action :run
+  if node['chef_packages']['chef']['version'].to_f < 10
+    action :run
+  else
+    action :nothing
+  end
 end
 
 file "/etc/apt/sources.list.d/nginx-ppa-source.update-once.list" do
